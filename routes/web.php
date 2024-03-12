@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,6 +27,12 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
+Route::get('/', function () {
+    return view('auth.login');
+})->name('login');
+
+
+
 Route::post('/contact/all/{id}/update', 
 'ContactController@updateMessageSubmit'
 )->name('contact-update-submit');
@@ -42,3 +49,15 @@ Route::get('/contact/all/{id}/delete',
 Route::get('/contact/all/{id}', 'ContactController@showOneMessage')->name('contact-data-one');
 Route::get('/contact/all', 'ContactController@allData')->name('contact-data');
 Route::post('/contact/submit', 'ContactController@submit')->name('contact-form');
+Auth::routes();
+Route::group(['middleware' => ['admin']], function () {
+    Route::get('/test', function () {
+        return view('test');
+    })->name('test');
+    
+});
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+ //Auth::routes();
+ Route::post('/login/submit', [App\Http\Controllers\Auth\LoginController::class, 'show'])->name('login-submit');
+ 

@@ -5,8 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
+use App\Models\User;
+use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Gate;
 class ContactController extends Controller
 {
+    use AuthenticatesUsers;
+
     public function submit(ContactRequest $req){
         $contact = new Contact();
         $contact->name = $req->input('name');
@@ -28,7 +34,7 @@ class ContactController extends Controller
         return redirect()->route('contact-data-one', $id)->with('success', 'Сообщение было обновлено');
     }
 
-    public function allData(){
+    public function allData() {
         $contact = new Contact;
       // $contact = Contact::all();
       //  dd($contact); //все записи в контактах
@@ -47,8 +53,14 @@ class ContactController extends Controller
         return view('update-message', ['data' => $contact->find($id)]); 
     }
 
-    public function deleteMessage($id){
-       Contact::find($id)->delete();
-       return redirect()->route('contact-data')->with('success', 'Сообщение было удалено');
-    }
+    // public function deleteMessage($id){
+      //  if($id->HasRole('admin'))
+      //  {
+           // Contact::find($id)->delete();
+       //   return redirect('/home');
+          //  return redirect()->route('contact-data')->with('success', 'Сообщение было удалено');
+      //  }
+      //  return redirect('/test');
+     
+    // }
 }

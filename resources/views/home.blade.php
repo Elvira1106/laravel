@@ -1,5 +1,4 @@
 @extends('loyats.app')
-
 @section('title-block')
 Главная страница
 @endsection
