@@ -13,7 +13,7 @@
     <p>{{$el->email}}</p>
     <p><small>{{$el->created_at}}</small></p>
     @can('view', auth()->user())
-    <a href="{{route('contact-data-one', $el->id)}}"><button class ="btn btn-warning">Детальное</button></a>
+    <a href="{{route('contact.show', $el->id)}}"><button class ="btn btn-warning">Детальное</button></a>
     @endcan
 </div>
 @endforeach

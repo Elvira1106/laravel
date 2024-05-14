@@ -7,8 +7,9 @@
 @section('content')
 <h1>Обновление записи</h1>
 
-<form action ="{{route('contact-update-submit',  $data->id)}}" method ="post">
+<form action ="{{route('contact.update',  $data->id)}}" method ="post">
     @csrf 
+    @method('patch')
 <div class="form-group">
       <label for="name">Введите имя</label>
       <input type="text" name="name" value = "{{$data->name}}" placeholder="Введите имя" id="name" class="form-control">

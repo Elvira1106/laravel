@@ -7,7 +7,7 @@
 @section('content')
 <h1>Страница контактов</h1>
 
-<form action ="{{route('contact-form')}}" method ="post">
+<form action ="{{route('contact.store')}}" method ="post">
     @csrf 
 <div class="form-group">
       <label for="name">Введите имя</label>

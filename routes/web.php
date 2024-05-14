@@ -1,8 +1,11 @@
 <?php
 
+use App\Models\Contact;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ContactController1;
+use App\Http\Controllers\PostController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,51 +16,25 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::view('/home', 'home');
 
-Route::get('/home', function () {
-    return view('home');
-})->name('home');
+Route::view('/about', 'about')->name('about');
 
-Route::get('/about', function () {
-    return view('about');
-})->name('about');
+Route::view('/', 'auth.login')->name('login');
 
-
-Route::get('/contact', function () {
-    return view('contact');
-})->name('contact');
-
-Route::get('/', function () {
-    return view('auth.login');
-})->name('login');
+Route::resources([
+    'contact' => ContactController1::class,
+    'post' => PostController::class,
+]);
 
 
 
-Route::post('/contact/all/{id}/update', 
-'ContactController@updateMessageSubmit'
-)->name('contact-update-submit');
-
-Route::get('/contact/all/{id}/update', 
-'ContactController@updateMessage'
-)->name('contact-update');
-
-Route::get('/contact/all/{id}/delete', 
-'ContactController@deleteMessage'
-)->name('contact-delete');
-
-
-Route::get('/contact/all/{id}', 'ContactController@showOneMessage')->name('contact-data-one');
-Route::get('/contact/all', 'ContactController@allData')->name('contact-data');
-Route::post('/contact/submit', 'ContactController@submit')->name('contact-form');
 Auth::routes();
-Route::group(['middleware' => ['admin']], function () {
-    Route::get('/test', function () {
-        return view('test');
-    })->name('test');
+Route::group(['middleware' => ['admin']], function () {                                                                     
+   
+    Route::view('/test', 'test')->name('test');
     
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
- //Auth::routes();
- Route::post('/login/submit', [App\Http\Controllers\Auth\LoginController::class, 'show'])->name('login-submit');
  

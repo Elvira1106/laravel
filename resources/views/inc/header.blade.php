@@ -41,8 +41,9 @@
                           @else
                           <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{{ route('home') }}">Главная</a>
                           <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{{ route('about') }}">Эльвира</a>
-                          <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{{ route('contact') }}">Контакты</a>
-                          <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{{ route('contact-data') }}">Cooбщения</a>
+                          <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{{ route('contact.index') }}">Контакты</a>
+                          <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{{ route('contact.create') }}">Cooбщения</a>
+                          <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{{ route('post.index') }}">Посты</a>
                           <li class="nav-item dropdown">
                               <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                   {{ Auth::user()->name }}

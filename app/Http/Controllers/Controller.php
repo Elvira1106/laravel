@@ -9,5 +9,5 @@ use App\Models\Contact;
 
 class Controller extends BaseController
 {
-    use AuthorizesRequests, ValidatesRequests;
+    use AuthorizesRequests,  ValidatesRequests;
 }
